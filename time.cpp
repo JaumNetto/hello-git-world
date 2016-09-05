@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include<conio.h>
 
+//Funçao para verificar se o ano é bissexto
 bissexto(int ano)
 { 
 	
@@ -14,41 +15,57 @@ bissexto(int ano)
 		return 1;
 }
 
-pergunta()
+//Função para exibir o calendario passado como parametro os dias daquele mês
+int exibirCalendario(int diasM)
 {
-	int mes, ano;;
+	int mat[5][6];
+	int dias=1;
 	
-	
-	scanf("%d", &mes);
-	scanf("%d", &ano);
-
+	printf("  D   S   T   Q   Q   S   S\n");
+		for(int j=0; j<=6; j++)
+		{
+			for(int i = 1; i<=7; i++)
+				{
+					printf(" %2d ", dias);
+					dias++;
+					if(dias==diasM)
+					return 1;
+				}
+			printf("\n");	
+		}
 }
-
-iniciar meses()
-{
-	int jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez;
-	
-	jan=31;
-	if(bissexto = 1)
-		fev = 29;
-	else
-		fev = 28;
-	mar = 31;
-	abr= 30;
-	mai = 31;
-	jun = 30;
-	jul = 31;
-	ago = 31;
-	set = 30;
-	out = 31;
-	nov = 30;
-	dez = 31;
-	
-}
-
-
 
 main()
 {
+	int mes, ano;
+	
+	//Pergunta pro usuario o Mês e o Ano
+	scanf("%d", &mes);
+	scanf("%d", &ano);
+	
+	//switch para chamar a funçao de exibir o Mês e colocar o cabeçalho
+	switch(mes)
+	{
+		case 1:
+			printf("-----------Janeiro----------\n");
+			exibirCalendario(32);
+			break;
+		case 2:
+			printf("----------Fevereiro-----------\n");
+			int bi = bissexto(ano);
+			if(bi==1)
+				exibirCalendario(30);
+			else
+				exibirCalendario(29);
+				break;
+				
+		case 3:
+			
+				
+				
+				
+	}
+	
+	
 	
 }

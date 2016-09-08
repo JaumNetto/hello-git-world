@@ -4,7 +4,7 @@
 	Date: 04/09/16 15:51
 	Description: Programa para produzir um calendario
 */
-#include <stdio.h>
+#include<stdio.h>
 #include<conio.h>
 
 //Funçao para verificar se o ano é bissexto
@@ -22,6 +22,7 @@ int exibirCalendario(int diasM)
 	int dias=1;
 	
 	printf("  D   S   T   Q   Q   S   S\n");
+	printf(" ");
 		for(int j=0; j<=6; j++)
 		{
 			for(int i = 1; i<=7; i++)
@@ -35,9 +36,14 @@ int exibirCalendario(int diasM)
 		}
 }
 
+int calcularDiaDaSemana()
+{
+	
+}
+
 main()
 {
-	int mes, ano;
+	int mes, ano, bi;
 	
 	//Pergunta pro usuario o Mês e o Ano
 	scanf("%d", &mes);
@@ -52,17 +58,58 @@ main()
 			break;
 		case 2:
 			printf("----------Fevereiro-----------\n");
-			int bi = bissexto(ano);
-			if(bi==1)
+			 bi = bissexto(ano);
+			if(bi==1){
 				exibirCalendario(30);
-			else
+				break;
+				}
+			else{
 				exibirCalendario(29);
 				break;
-				
+				}
 		case 3:
-			
-				
-				
+			printf("----------Marco-------------\n");
+			exibirCalendario(32);
+			break;
+		case 4:
+			printf("-----------Abril------------\n");
+			exibirCalendario(31);
+			break;
+		case 5:
+			printf("------------Maio------------\n");
+			exibirCalendario(32);
+			break;
+		case 6:
+			printf("----------Junho-------------\n");
+			exibirCalendario(31);
+			break;
+		case 7:
+			printf("----------Julho-------------\n");
+			exibirCalendario(32);
+			break;
+		case 8:
+			printf("---------Agosto------------\n");
+			exibirCalendario(32);
+			break;
+		case 9:
+			printf("--------Setembro-----------\n");
+			exibirCalendario(31);
+			break;
+		case 10:
+			printf("---------Outubro-----------\n");
+			exibirCalendario(32);
+			break;
+		case 11:
+			printf("-------Novembro-----------\n");
+			exibirCalendario(31);
+			break;
+		case 12:
+			printf("--------Dezembro----------\n");
+			exibirCalendario(32);
+			break;
+		default:
+			printf("Nenhuma opção escolhida!\n");
+			break;
 				
 	}
 	

@@ -1,13 +1,13 @@
-/*
+ /*
 	Name: Calendario.cpp
-	Author: Jo„o Manoel de Oliveira Neto / Davi Medeiros
+	Author: Jo√£o Manoel de Oliveira Neto / Davi Medeiros
 	Date: 04/09/16 15:51
 	Description: Programa para produzir um calendario
 */
 #include<stdio.h>
 #include<conio.h>
 
-//FunÁao para verificar se o ano È bissexto
+//Fun√ßao para verificar se o ano √© bissexto
 bissexto(int ano)
 { 
 	
@@ -15,100 +15,187 @@ bissexto(int ano)
 		return 1;
 }
 
-//FunÁ„o para exibir o calendario passado como parametro os dias daquele mÍs
-int exibirCalendario(int diasM)
+//Fun√ß√£o para inicializar matriz para mostrar calendario
+void iniciar_matriz(char mat[1][6],int mat2[5][6], int dias, int d)
 {
-	int mat[5][6];
+	int cont=1;
+	
+	//Inicializar cabe√ßalho
+	mat[0][0] = 'D';
+	mat[0][1] = 'S';
+	mat[0][2] = 'T';
+	mat[0][3] = 'Q';
+	mat[0][4] = 'Q';
+	mat[0][5] = 'S';
+	mat[0][6] = 'S';
+	
+	//inicializar com os dias da semana
+	//Problema= Mostrar os dias na sequencia certa
+	
+	
+	switch(d)
+	{
+		case 1:
+		
+	while(cont<31)
+	{
+			
+			for(int i=0; i<5; i++)
+				for(int j=0; j<6; j++)
+				{	
+					if(i==0 && j==0)
+						mat2[0][0]=0;
+					else
+					{
+						mat2[i][j]=cont;
+						cont++;	
+					}
+				}
+				
+		}
+	
+			
+			break;
+			
+	}					
+	
+	
+	
+}
+
+//Fun√ß√£o para exibir o calendario passado como parametro os dias daquele m√™s
+int exibirCalendario(int diasM, int d)
+{
+	char mat[1][6];
+	int mat2[5][6];
 	int dias=1;
 	
-	printf("  D   S   T   Q   Q   S   S\n");
-	printf(" ");
-		for(int j=0; j<=6; j++)
+	iniciar_matriz(mat, mat2, diasM, d);
+	
+	//Inicializar cabe√ßalho
+	for(int i=0; i<=6; i++)
+	{
+		printf("  %c ", mat[0][i]);
+	}
+	printf("\n");
+
+	
+	
+	//La√ßo para colocar os dias
+		for(int i=0; i<=7; i++)
 		{
-			for(int i = 1; i<=7; i++)
+			for(int j = 0; j<=6; j++)
 				{
-					printf(" %2d ", dias);
-					dias++;
-					if(dias==diasM)
-					return 1;
+					printf(" %2d ", mat2[i][j]);	
+					
+					if(mat2[j][i]==29)
+						return 1;
+					
 				}
 			printf("\n");	
 		}
 }
 
-int calcularDiaDaSemana()
+int calcularDiaDaSemana(int ano, int mes)
 {
+	int a, y, m, dias=1, d;
+	
+	a = (14-mes)/12;
+	y = ano - a;
+	
+	m= mes + 12 * a - 2;
+	
+	int kl = (1 + y + (y/4 )- (y/100)+(y/400)+((31*m)/12));
+	
+	d = kl%7;
+	
+	return d;
 	
 }
 
 main()
 {
-	int mes, ano, bi;
+	int mes, ano, bi, d;
 	
-	//Pergunta pro usuario o MÍs e o Ano
+	//Pergunta pro usuario o M√™s e o Ano
 	scanf("%d", &mes);
 	scanf("%d", &ano);
+	calcularDiaDaSemana(ano, mes);
 	
-	//switch para chamar a funÁao de exibir o MÍs e colocar o cabeÁalho
+	//switch para chamar a fun√ßao de exibir o M√™s e colocar o cabe√ßalho
 	switch(mes)
 	{
 		case 1:
+			
 			printf("-----------Janeiro----------\n");
-			exibirCalendario(32);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(31, d);
 			break;
 		case 2:
 			printf("----------Fevereiro-----------\n");
 			 bi = bissexto(ano);
 			if(bi==1){
-				exibirCalendario(30);
+				d = calcularDiaDaSemana(ano, mes);
+				exibirCalendario(29,d);
 				break;
 				}
 			else{
-				exibirCalendario(29);
+				d = calcularDiaDaSemana(ano, mes);
+				exibirCalendario(28,d);
 				break;
 				}
 		case 3:
 			printf("----------Marco-------------\n");
-			exibirCalendario(32);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(31,d);
 			break;
 		case 4:
 			printf("-----------Abril------------\n");
-			exibirCalendario(31);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(30,d);
 			break;
 		case 5:
 			printf("------------Maio------------\n");
-			exibirCalendario(32);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(31,d);
 			break;
 		case 6:
 			printf("----------Junho-------------\n");
-			exibirCalendario(31);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(30,d);
 			break;
 		case 7:
 			printf("----------Julho-------------\n");
-			exibirCalendario(32);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(31,d);
 			break;
 		case 8:
 			printf("---------Agosto------------\n");
-			exibirCalendario(32);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(31,d);
 			break;
 		case 9:
 			printf("--------Setembro-----------\n");
-			exibirCalendario(31);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(30,d);
 			break;
 		case 10:
 			printf("---------Outubro-----------\n");
-			exibirCalendario(32);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(31,d);
 			break;
 		case 11:
 			printf("-------Novembro-----------\n");
-			exibirCalendario(31);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(30,d);
 			break;
 		case 12:
 			printf("--------Dezembro----------\n");
-			exibirCalendario(32);
+			d = calcularDiaDaSemana(ano, mes);
+			exibirCalendario(31,d);
 			break;
 		default:
-			printf("Nenhuma opÁ„o escolhida!\n");
+			printf("Nenhuma op√ß√£o escolhida!\n");
 			break;
 				
 	}

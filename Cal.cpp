@@ -1,13 +1,13 @@
  /*
 	Name: Calendario.cpp
-	Author: Jo√£o Manoel de Oliveira Neto / Davi Medeiros
+	Author: Jo„o Manoel de Oliveira Neto / Davi Medeiros
 	Date: 04/09/16 15:51
 	Description: Programa para produzir um calendario
 */
 #include<stdio.h>
 #include<conio.h>
 
-//Fun√ßao para verificar se o ano √© bissexto
+//FunÁao para verificar se o ano È bissexto
 bissexto(int ano)
 { 
 	
@@ -15,12 +15,12 @@ bissexto(int ano)
 		return 1;
 }
 
-//Fun√ß√£o para inicializar matriz para mostrar calendario
+//FunÁ„o para inicializar matriz para mostrar calendario
 void iniciar_matriz(char mat[1][6],int mat2[5][6], int dias, int d)
 {
 	int cont=1;
 	
-	//Inicializar cabe√ßalho
+	//Inicializar cabeÁalho
 	mat[0][0] = 'D';
 	mat[0][1] = 'S';
 	mat[0][2] = 'T';
@@ -32,27 +32,28 @@ void iniciar_matriz(char mat[1][6],int mat2[5][6], int dias, int d)
 	//inicializar com os dias da semana
 	//Problema= Mostrar os dias na sequencia certa
 	
-	
+	mat2[0][0]=0;
 	switch(d)
 	{
 		case 1:
 		
-	while(cont<31)
-	{
-			
+	
+	
+		
 			for(int i=0; i<5; i++)
 				for(int j=0; j<6; j++)
 				{	
-					if(i==0 && j==0)
-						mat2[0][0]=0;
-					else
-					{
-						mat2[i][j]=cont;
-						cont++;	
-					}
+					
+					if(i==0&&j==0)
+						j=1;
+						
+					mat2[i][j]=cont;
+					printf("%d\n", cont);
+					cont++;	
+					
 				}
 				
-		}
+		
 	
 			
 			break;
@@ -63,7 +64,7 @@ void iniciar_matriz(char mat[1][6],int mat2[5][6], int dias, int d)
 	
 }
 
-//Fun√ß√£o para exibir o calendario passado como parametro os dias daquele m√™s
+//FunÁ„o para exibir o calendario passado como parametro os dias daquele mÍs
 int exibirCalendario(int diasM, int d)
 {
 	char mat[1][6];
@@ -72,23 +73,23 @@ int exibirCalendario(int diasM, int d)
 	
 	iniciar_matriz(mat, mat2, diasM, d);
 	
-	//Inicializar cabe√ßalho
+	//Inicializar cabeÁalho
 	for(int i=0; i<=6; i++)
 	{
 		printf("  %c ", mat[0][i]);
 	}
 	printf("\n");
 
+	int contador=0;
 	
-	
-	//La√ßo para colocar os dias
-		for(int i=0; i<=7; i++)
+	//LaÁo para colocar os dias
+		for(int i=0; i<=5; i++)
 		{
 			for(int j = 0; j<=6; j++)
 				{
 					printf(" %2d ", mat2[i][j]);	
-					
-					if(mat2[j][i]==29)
+					contador++;
+					if(contador==29)
 						return 1;
 					
 				}
@@ -117,12 +118,12 @@ main()
 {
 	int mes, ano, bi, d;
 	
-	//Pergunta pro usuario o M√™s e o Ano
+	//Pergunta pro usuario o MÍs e o Ano
 	scanf("%d", &mes);
 	scanf("%d", &ano);
 	calcularDiaDaSemana(ano, mes);
 	
-	//switch para chamar a fun√ßao de exibir o M√™s e colocar o cabe√ßalho
+	//switch para chamar a funÁao de exibir o MÍs e colocar o cabeÁalho
 	switch(mes)
 	{
 		case 1:
@@ -195,7 +196,7 @@ main()
 			exibirCalendario(31,d);
 			break;
 		default:
-			printf("Nenhuma op√ß√£o escolhida!\n");
+			printf("Nenhuma opÁ„o escolhida!\n");
 			break;
 				
 	}
